@@ -14,7 +14,7 @@ function! browserlink#EvaluateSelection()
 endfunction
 
 function! browserlink#EvaluateBuffer()
-	call browserlink#evaluateJS(join(getline(1,'$')," "))
+	call browserlink#evaluateJS(join(getline(1,'$'),"\n"))
 endfunction
 
 function! browserlink#EvaluateWord()
@@ -125,5 +125,5 @@ function! browserlink#get_visual_selection()
 	let lines = getline(lnum1, lnum2)
 	let lines[-1] = lines[-1][: col2 - 2]
 	let lines[0] = lines[0][col1 - 1:]
-	return join(lines, " ")
+	return join(lines, "\n")
 endfunction
