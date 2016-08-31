@@ -21,6 +21,7 @@ let g:bl_state = 0
 
 command! -range -nargs=0 BLEvaluateSelection call browserlink#EvaluateSelection()
 command!        -nargs=0 BLEvaluateBuffer    call browserlink#EvaluateBuffer()
+command!        -nargs=0 BLEvaluateParagraph call browserlink#EvaluateParagraph()
 command!        -nargs=0 BLEvaluateWord      call browserlink#EvaluateWord()
 command!        -nargs=1 BLEval              call browserlink#evaluateJS(<f-args>)
 command!        -nargs=0 BLReloadPage        call browserlink#sendCommand("reload/page")

@@ -9,6 +9,16 @@ import os
 import subprocess
 NOMAS
 
+function! browserlink#EvaluateParagraph()
+    let b:cur = getcurpos()
+    silent exe "normal! {"
+    let b:start = line('.')
+    silent exe "normal! }"
+    let b:end = line('.')
+    call setpos('.', b:cur)
+    call browserlink#evaluateJS(join(getline(b:start,b:end),"\n"))
+endfunction
+
 function! browserlink#EvaluateSelection()
 	call browserlink#evaluateJS(browserlink#get_visual_selection())
 endfunction
