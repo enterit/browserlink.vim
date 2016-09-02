@@ -65,7 +65,7 @@
 			break;
 			default:
 				console.log(evt.data);
-				eval(evt.data);
+				console.log(eval(evt.data));
 			break;
 		}
 	};
