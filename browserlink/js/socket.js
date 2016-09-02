@@ -65,7 +65,9 @@
 			break;
 			default:
 				console.log(evt.data);
-				console.log(eval(evt.data));
+				// store evaluation result as Chrome's last eval variable
+				$_ = eval(evt.data);
+				console.log($_);
 			break;
 		}
 	};
