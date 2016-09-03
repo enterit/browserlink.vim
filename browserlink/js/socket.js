@@ -109,9 +109,16 @@
 			log.call(console, str);
 			var err = (new Error).stack;
 			err = err.replace("Error", "").replace(/\s+at\s/g, '@').replace(/@/g, "\n@");
+			// workarounds for objects with circular references
+			var text;
+			try {
+			  text = JSON.stringify(str)
+			} catch(e) {
+			  text = e.message
+			}
 			socket.send(JSON.stringify({
 				"type"       : "log",
-				"message"    : str,
+				"message"    : text,
 				"stacktrace" : err
 			}));
 		}
