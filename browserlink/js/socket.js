@@ -106,13 +106,15 @@
 	if (!window.__BL_NO_CONSOLE_OVERRIDE) {
 		var log = console.log;
 		console.log = function(str) {
-			log.call(console, str);
+			log.apply(console, arguments);
 			var err = (new Error).stack;
 			err = err.replace("Error", "").replace(/\s+at\s/g, '@').replace(/@/g, "\n@");
 			// workarounds for objects with circular references
 			var text;
 			try {
-			  text = JSON.stringify(str)
+			  var arrayText = JSON.stringify([].slice.call(arguments))
+			  // remove brackets around array text
+			  text = arrayText.slice(1, arrayText.length - 1)
 			} catch(e) {
 			  text = e.message
 			}
