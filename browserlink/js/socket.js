@@ -66,7 +66,12 @@
 			default:
 				console.log(evt.data);
 				// store evaluation result as Chrome's last eval variable
-				$_ = eval(evt.data);
+				var expression = evt.data;
+				// treat expression that starts with curly bracket as an object.
+				// this is required to tweak default behavior of eval, which treats such an expression
+				// as a code block
+				if (expression.trim().startsWith('{')) expression = '(' + expression + ')';
+				$_ = eval(expression);
 				console.log($_);
 			break;
 		}
